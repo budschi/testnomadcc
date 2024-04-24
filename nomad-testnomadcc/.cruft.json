@@ -1,0 +1,23 @@
+{
+  "template": "https://github.com/blueraft/cookiecutter-nomad-plugin",
+  "commit": "791bfb75ce49c8112a3d0f25525710dde33b50c7",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "full_name": "Sebastian Brueckner",
+      "email": "sebastian.brueckner@physik.hu-berlin.de",
+      "github_username": "budschi",
+      "plugin_name": "testnomadcc",
+      "module_name": "testnomadcc",
+      "short_description": "Nomad example template",
+      "version": "0.1.0",
+      "license": "MIT",
+      "variant": "schema",
+      "_copy_without_render": [
+        "*.html"
+      ],
+      "_template": "https://github.com/blueraft/cookiecutter-nomad-plugin"
+    }
+  },
+  "directory": null
+}
