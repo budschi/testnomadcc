@@ -1,0 +1,128 @@
+definitions:
+  name: 'ELN for Float Zone Feed Rods'
+  sections:
+    Feed_rod:
+      base_sections:
+      - nomad.datamodel.metainfo.basesections.CompositeSystem
+      - '#/FzMaterial'
+      - nomad.datamodel.data.EntryData
+
+      m_annotations:
+        display:
+          order: List['name', 'lab_id', 'datetime', 'diameter', 'length', 'weight', 'rod_surface', 'rod_pretreatment', 'rod_angle', 'chemical_formula', 'status', 'angespitzt', 'geaetzt', 'ready_to_use', 'ort', 'description']
+      quantities:
+        material_type:
+          type:
+            type_kind: Enum
+            type_data:
+              - Wacker
+              - ASIMI
+              - REC
+              - other
+          description: "feed rod material options"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        diameter:
+          type: np.float64
+          description: "diameter of feed rod"
+          unit: mm
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+              defaultDisplayUnit: mm
+        length:
+          type: np.float64
+          description: "length of feed rod"
+          unit: mm
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+              defaultDisplayUnit: mm
+        weight:
+          type: np.float64
+          description: "weight of feed rod"
+          unit: kg
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+              defaultDisplayUnit: kg
+        rod_surface:
+          type:
+            type_kind: Enum
+            type_data:
+              - round grinded
+              - raw
+          description: "rod surface condition"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        rod_pretreatment:
+          type:
+            type_kind: Enum
+            type_data:
+              - etched
+              - raw
+              - US cleaned
+          description: "rod pretreatment"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        rod_angle:
+          type: np.float64
+          description: "angle of feed rod"
+          unit: deg
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+              defaultDisplayUnit: deg
+        chemical_formula:
+          type: str
+          description: "chemical formula of feed rod"
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        status:
+          type:
+            type_kind: Enum
+            type_data:
+              - muss geätzt werden
+              - ready to use
+              - wurde zum Ätzen geschickt
+              - muss angespitzt werden
+          description: "rod pretreatment"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        angespitzt:
+          type: bool
+          description: tick if rod is sharpened
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+        geaetzt:
+          type: bool
+          description: tick if rod is etched
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+        ready_to_use:
+          type: bool
+          description: tick if rod is ready to use
+          m_annotations:
+            eln:
+              component: BoolEditQuantity
+        ort:
+          type:
+            type_kind: Enum
+            type_data:
+              - Wagen FZ-Halle
+              - Keller
+              - FZ Halle Regal
+              - Kiste Keller
+              - Kiste Glaspasage
+          description: "location of feed rod"
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+
