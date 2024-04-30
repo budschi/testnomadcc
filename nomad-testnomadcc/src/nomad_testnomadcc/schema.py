@@ -158,3 +158,4 @@ class Feed_rod(CompositeSystem, FzMaterial, EntryData, ArchiveSection):
 
 
 m_package.__init_metainfo__()
+
