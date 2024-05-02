@@ -18,7 +18,13 @@
 
 from nomad.datamodel.metainfo.basesections import CompositeSystem
 from nomad.datamodel.data import EntryData
+from nomad.datamodel.metainfo.plot import PlotSection, PlotlyFigure
 import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from nomad.units import ureg
+
 from structlog.stdlib import (
     BoundLogger,
 )
@@ -156,6 +162,24 @@ class Feed_rod(CompositeSystem, FzMaterial, EntryData, ArchiveSection):
         '''
         super(Feed_rod, self).normalize(archive, logger)
 
+        if self.length and self.diameter:
+            density= (2.33*ureg('kilogram'))/(1000000*ureg('millimeter**3'))
+            self.weight = (np.pi*((self.diameter/2)**2)*self.length)*(density)
+        if self.angespitzt == False and self.geaetzt == False:
+            self.status = 'muss angespitzt werden'
+            self.ready_to_use = False
+        elif self.angespitzt == True and self.geaetzt == False:
+            self.status = 'muss geätzt werden'
+            self.ready_to_use = False
+        elif self.angespitzt == True and self.geaetzt == True:
+            self.status = 'ready to use'
+            self.ready_to_use = True
+        else:
+            self.status = 'wurde zum Ätzen geschickt'
+            self.ready_to_use = False
+        self.figures.append(PlotlyFigure(
+            figure=(go.Figure(data=[go.Table(header=dict(values=['length', 'diameter']), cells=dict(values=[[countries[3].length.magnitude], [countries[3].diameter.magnitude]]))])).to_plotly_json()
+        ))
 
 m_package.__init_metainfo__()
 
